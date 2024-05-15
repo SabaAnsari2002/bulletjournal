@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347724966530",
+    "project_id": "bulletjournal-9c4bb",
+    "storage_bucket": "bulletjournal-9c4bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347724966530:android:84e708e5e18b1e81f5e29b",
+        "android_client_info": {
+          "package_name": "com.saba.bulletjournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFVPiKM20xTsgjmSu2cdGtTft2lIXAH0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
