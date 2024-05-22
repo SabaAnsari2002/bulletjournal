@@ -50,7 +50,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-
     private fun loadNotes() {
         // Example of adding dummy data, replace this with actual data loading logic
         notesList.add(Note("Sample Note 1", "This is the content of note 1"))
