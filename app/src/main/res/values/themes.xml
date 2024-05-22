@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.Bulletjournal" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Bulletjournal" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/your_color_primary</item>
+        <item name="colorPrimaryDark">@color/your_color_primary_dark</item>
+        <item name="colorAccent">@color/your_color_accent</item>
+    </style>
 </resources>
