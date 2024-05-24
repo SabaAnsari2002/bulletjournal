@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
 
     private lateinit var logoutButton: Button
     private lateinit var addNoteButton: Button
@@ -28,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
         notesRecyclerView = findViewById(R.id.notesRecyclerView)
 
         notesList = mutableListOf()
-        notesAdapter = NotesAdapter(notesList)
+        notesAdapter = NotesAdapter(notesList, this)
         notesRecyclerView.adapter = notesAdapter
         notesRecyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -54,10 +54,16 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ADD_NOTE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             val note = data?.getParcelableExtra<Note>("note")
+            val position = data?.getIntExtra("position", -1)
+
             if (note != null) {
-                notesList.add(note)
+                if (requestCode == ADD_NOTE_REQUEST_CODE) {
+                    notesList.add(note)
+                } else if (requestCode == EDIT_NOTE_REQUEST_CODE && position != null && position >= 0) {
+                    notesList[position] = note
+                }
                 notesAdapter.notifyDataSetChanged()
             }
         }
@@ -70,7 +76,15 @@ class HomeActivity : AppCompatActivity() {
         notesAdapter.notifyDataSetChanged()
     }
 
+    override fun onItemClick(position: Int) {
+        val intent = Intent(this, AddNoteActivity::class.java)
+        intent.putExtra("note", notesList[position])
+        intent.putExtra("position", position)
+        startActivityForResult(intent, EDIT_NOTE_REQUEST_CODE)
+    }
+
     companion object {
         private const val ADD_NOTE_REQUEST_CODE = 1
+        private const val EDIT_NOTE_REQUEST_CODE = 2
     }
 }
