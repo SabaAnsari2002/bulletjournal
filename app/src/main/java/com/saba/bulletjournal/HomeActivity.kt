@@ -1,7 +1,6 @@
 package com.saba.bulletjournal
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
 
@@ -21,6 +21,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
     private lateinit var notesRecyclerView: RecyclerView
     private lateinit var notesAdapter: NotesAdapter
     private lateinit var notesList: MutableList<Note>
+    private lateinit var firestore: FirebaseFirestore
     private var isSelectionMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home)
 
         mAuth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
         logoutButton = findViewById(R.id.logoutButton)
         addNoteButton = findViewById(R.id.addNoteButton)
         deleteNoteButton = findViewById(R.id.deleteNoteButton)
@@ -81,10 +83,25 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         }
     }
 
+
     private fun loadNotes() {
-        notesList.add(Note("Sample Note 1", "This is the content of note 1"))
-        notesList.add(Note("Sample Note 2", "This is the content of note 2"))
-        notesAdapter.notifyDataSetChanged()
+        val userId = mAuth.currentUser?.uid ?: return
+        firestore.collection("notes")
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                notesList.clear()
+                for (document in documents) {
+                    val note = document.toObject(Note::class.java).apply {
+                        documentId = document.id
+                    }
+                    notesList.add(note)
+                }
+                notesAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error loading notes: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onItemClick(position: Int) {
@@ -110,11 +127,36 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
 
     private fun deleteSelectedNotes() {
         val selectedNotes = notesAdapter.getSelectedNotes()
-        notesList.removeAll(selectedNotes)
+        val userId = mAuth.currentUser?.uid ?: return
+        var deleteCount = 0
+
+        for (note in selectedNotes) {
+            firestore.collection("notes").document(note.documentId)
+                .delete()
+                .addOnSuccessListener {
+                    notesList.remove(note)
+                    deleteCount++
+                    if (deleteCount == selectedNotes.size) {
+                        // همه یادداشت‌ها حذف شده‌اند
+                        notesAdapter.notifyDataSetChanged()
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this, "Error deleting note: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        // حذف انتخاب‌ها بعد از حذف موفق
         notesAdapter.clearSelection()
-        notesAdapter.notifyDataSetChanged()
-        Toast.makeText(this, "Notes deleted", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onResume() {
+        super.onResume()
+        loadNotes()
+    }
+
+
+
 
     companion object {
         private const val ADD_NOTE_REQUEST_CODE = 1

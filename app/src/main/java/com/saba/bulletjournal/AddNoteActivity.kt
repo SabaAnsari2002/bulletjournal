@@ -6,13 +6,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var noteTitleEditText: EditText
     private lateinit var noteContentEditText: EditText
     private lateinit var saveNoteButton: Button
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var mAuth: FirebaseAuth
+
     private var position: Int = -1
+    private var note: Note? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +28,13 @@ class AddNoteActivity : AppCompatActivity() {
         noteContentEditText = findViewById(R.id.noteContentEditText)
         saveNoteButton = findViewById(R.id.saveNoteButton)
 
-        val note = intent.getParcelableExtra<Note>("note")
+        firestore = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
+
+        note = intent.getParcelableExtra("note")
         if (note != null) {
-            noteTitleEditText.setText(note.title)
-            noteContentEditText.setText(note.content)
+            noteTitleEditText.setText(note!!.title)
+            noteContentEditText.setText(note!!.content)
             position = intent.getIntExtra("position", -1)
         }
 
@@ -38,14 +47,64 @@ class AddNoteActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Save note logic here
-            val note = Note(title, content)
-            val resultIntent = Intent().apply {
-                putExtra("note", note)
-                putExtra("position", position)
+            if (note == null) {
+                // Add new note
+                addNewNoteToFirestore(title, content)
+            } else {
+                // Update existing note
+                updateNoteInFirestore(note!!.documentId, title, content)
             }
-            setResult(RESULT_OK, resultIntent)
-            finish()
         }
     }
+
+    private fun addNewNoteToFirestore(title: String, content: String) {
+        val userId = mAuth.currentUser?.uid ?: return
+        val noteMap = hashMapOf(
+            "title" to title,
+            "content" to content,
+            "userId" to userId
+        )
+
+        firestore.collection("notes")
+            .add(noteMap)
+            .addOnSuccessListener { documentReference ->
+                val note = Note(documentId = documentReference.id, title = title, content = content, userId = userId)
+                val resultIntent = Intent().apply {
+                    putExtra("note", note)
+                }
+                setResult(RESULT_OK, resultIntent)
+                finish()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error adding note: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun updateNoteInFirestore(documentId: String, title: String, content: String) {
+        val userId = mAuth.currentUser?.uid ?: return
+        val noteMap = hashMapOf(
+            "title" to title,
+            "content" to content,
+            "userId" to userId
+        )
+
+        firestore.collection("notes").document(documentId)
+            .set(noteMap)
+            .addOnSuccessListener {
+                val updatedNote = Note(documentId = documentId, title = title, content = content, userId = userId)
+                val resultIntent = Intent().apply {
+                    putExtra("note", updatedNote)
+                    putExtra("position", position)
+                }
+                setResult(RESULT_OK, resultIntent)
+                finish()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error updating note: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+
+
 }
