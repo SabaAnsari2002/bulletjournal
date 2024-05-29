@@ -2,11 +2,14 @@ package com.saba.bulletjournal
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +20,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
     private lateinit var logoutButton: Button
     private lateinit var addNoteButton: Button
     private lateinit var deleteNoteButton: Button
+    private lateinit var switchDarkMode: Switch
     private lateinit var mAuth: FirebaseAuth
     private lateinit var notesRecyclerView: RecyclerView
     private lateinit var notesAdapter: NotesAdapter
@@ -33,6 +37,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         logoutButton = findViewById(R.id.logoutButton)
         addNoteButton = findViewById(R.id.addNoteButton)
         deleteNoteButton = findViewById(R.id.deleteNoteButton)
+        switchDarkMode = findViewById(R.id.switch_dark_mode)
         notesRecyclerView = findViewById(R.id.notesRecyclerView)
 
         notesList = mutableListOf()
@@ -64,6 +69,19 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
                 showDeleteConfirmationDialog()
             }
         }
+
+        // Check current mode and set switch accordingly
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        switchDarkMode.isChecked = currentNightMode == Configuration.UI_MODE_NIGHT_YES
+
+        // Set listener for switch to change theme
+        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -82,7 +100,6 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
             }
         }
     }
-
 
     private fun loadNotes() {
         val userId = mAuth.currentUser?.uid ?: return
@@ -154,9 +171,6 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         super.onResume()
         loadNotes()
     }
-
-
-
 
     companion object {
         private const val ADD_NOTE_REQUEST_CODE = 1
