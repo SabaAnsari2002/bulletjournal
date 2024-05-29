@@ -7,6 +7,10 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+
+
+
+
 class NotesAdapter(
     private val notes: List<Note>,
     private val listener: OnItemClickListener
@@ -24,14 +28,20 @@ class NotesAdapter(
         holder.titleTextView.text = note.title
         holder.contentTextView.text = note.content
         holder.checkBox.isChecked = selectedNotes.contains(position)
+        holder.dateTextView.text = note.date // نمایش تاریخ
+
     }
+
 
     override fun getItemCount() = notes.size
 
-    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+
+        inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val titleTextView: TextView = itemView.findViewById(R.id.noteTitleTextView)
         val contentTextView: TextView = itemView.findViewById(R.id.noteContentTextView)
         val checkBox: CheckBox = itemView.findViewById(R.id.noteCheckBox)
+            val dateTextView: TextView = itemView.findViewById(R.id.noteDateTextView)
 
         init {
             itemView.setOnClickListener(this)

@@ -19,14 +19,23 @@
         android:layout_height="48dp"
         android:hint="Note Content"
         android:padding="10dp"
+        android:layout_marginTop="16dp"
+        />
 
+    <EditText
+        android:id="@+id/noteDateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Note Date (YYYY-MM-DD)"
+        android:padding="10dp"
         android:layout_marginTop="16dp"
         />
 
     <Button
         android:id="@+id/saveNoteButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save Note"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        />
 </LinearLayout>

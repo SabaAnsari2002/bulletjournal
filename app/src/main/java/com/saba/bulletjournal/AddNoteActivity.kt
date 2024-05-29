@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Calendar
 
 class AddNoteActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var saveNoteButton: Button
     private lateinit var firestore: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var noteDateEditText: EditText
 
     private var position: Int = -1
     private var note: Note? = null
@@ -27,6 +29,8 @@ class AddNoteActivity : AppCompatActivity() {
         noteTitleEditText = findViewById(R.id.noteTitleEditText)
         noteContentEditText = findViewById(R.id.noteContentEditText)
         saveNoteButton = findViewById(R.id.saveNoteButton)
+        noteDateEditText = findViewById(R.id.noteDateEditText)
+        noteDateEditText.setText(getDefaultDate())
 
         firestore = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -59,10 +63,14 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun addNewNoteToFirestore(title: String, content: String) {
         val userId = mAuth.currentUser?.uid ?: return
+        val date = noteDateEditText.text.toString().trim()
+
         val noteMap = hashMapOf(
             "title" to title,
             "content" to content,
-            "userId" to userId
+            "userId" to userId,
+            "date" to date // اضافه کردن تاریخ به noteMap
+
         )
 
         firestore.collection("notes")
@@ -82,10 +90,14 @@ class AddNoteActivity : AppCompatActivity() {
 
     private fun updateNoteInFirestore(documentId: String, title: String, content: String) {
         val userId = mAuth.currentUser?.uid ?: return
+        val date = noteDateEditText.text.toString().trim()
+
         val noteMap = hashMapOf(
             "title" to title,
             "content" to content,
-            "userId" to userId
+            "userId" to userId,
+            "date" to date // اضافه کردن تاریخ به noteMap
+
         )
 
         firestore.collection("notes").document(documentId)
@@ -104,7 +116,15 @@ class AddNoteActivity : AppCompatActivity() {
             }
     }
 
+    private fun getDefaultDate(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1 // ماه‌ها از 0 شروع می‌شوند
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        return "$year-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}"
+    }
 
 
 
 }
+

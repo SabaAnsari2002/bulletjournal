@@ -114,6 +114,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
                     }
                     notesList.add(note)
                 }
+                notesList.sortByDescending { it.date }
                 notesAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
@@ -154,7 +155,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
                     notesList.remove(note)
                     deleteCount++
                     if (deleteCount == selectedNotes.size) {
-                        // همه یادداشت‌ها حذف شده‌اند
+                        // همه یادداشتها حذف شدهاند
                         notesAdapter.notifyDataSetChanged()
                     }
                 }
@@ -163,7 +164,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
                 }
         }
 
-        // حذف انتخاب‌ها بعد از حذف موفق
+        // حذف انتخابها بعد از حذف موفق
         notesAdapter.clearSelection()
     }
 
