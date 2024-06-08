@@ -1,31 +1,185 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="16dp">-->
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/email"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="Email"-->
+<!--        android:padding="10dp" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:padding="10dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/loginButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:text="Login"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="16dp" />-->
+<!--</LinearLayout>-->
+
+
+
+<!--</RelativeLayout>-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-
-    <EditText
-        android:id="@+id/email"
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Email"
-        android:padding="10dp" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background2"
+        app:srcCompat="@drawable/background2" />
 
-    <EditText
-        android:id="@+id/password"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
+        <!-- Title Image -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/titleText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/lindenhill"
+                android:letterSpacing="0.4"
+                android:text="L"
+                android:textColor="#3B6E99"
+                android:textSize="45sp" />
+
+            <ImageView
+                android:id="@+id/titleImage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/o2" />
+
+            <TextView
+                android:id="@+id/titleText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/lindenhill"
+                android:letterSpacing="0.4"
+                android:text="G"
+                android:textColor="#3B6E99"
+                android:textSize="45sp" />
+
+            <TextView
+                android:id="@+id/titleText4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/lindenhill"
+                android:letterSpacing="0.4"
+                android:text="I"
+                android:textColor="#3B6E99"
+                android:textSize="45sp" />
+
+            <TextView
+                android:id="@+id/titleText5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/lindenhill"
+                android:letterSpacing="0.4"
+                android:text="N"
+                android:textColor="#3B6E99"
+                android:textSize="45sp" />
+
+        </LinearLayout>
+
+
+        <!-- Email EditText -->
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#A4C7DA"
+            android:fontFamily="@font/jsmath"
+            android:gravity="center"
+            android:hint="Email"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColorHint="#8A000000"
+            android:textSize="25dp" />
+
+        <!-- Password EditText -->
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#A4C7DA"
+            android:fontFamily="@font/jsmath"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColorHint="#8A000000"
+            android:textSize="25dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#3B6E99"
+            android:contentDescription="@string/login"
+            android:fontFamily="@font/caveat"
+            android:text="@string/login"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
         android:layout_height="48dp"
-        android:text="Login"
-        android:padding="10dp"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_black"
+        android:contentDescription="@string/back_button" />
+
+</RelativeLayout>
