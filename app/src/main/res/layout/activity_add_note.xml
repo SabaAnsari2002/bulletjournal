@@ -1,57 +1,183 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="16dp">-->
 
+<!--    <EditText-->
+<!--        android:id="@+id/noteTitleEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="Note Title"-->
+<!--        android:padding="10dp"-->
+<!--        />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/noteContentEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="Note Content"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/noteDateEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:hint="Note Date (YYYY-MM-DD)"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/selectImageButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Select Images"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/imagesRecyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:visibility="visible"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/saveNoteButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Save Note"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        />-->
+<!--</LinearLayout>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background5"
+        app:srcCompat="@drawable/background5" />
+
+    <!-- Note Title -->
     <EditText
         android:id="@+id/noteTitleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Note Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Title"
         android:padding="10dp"
-        />
+        android:textSize="28sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@null"/>
 
-    <EditText
-        android:id="@+id/noteContentEditText"
+    <!-- Line below Note Title -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Note Content"
-        android:padding="10dp"
-        android:layout_marginTop="16dp"
-        />
+        android:layout_height="1dp"
+        android:layout_below="@id/noteTitleEditText"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#000"/>
 
+    <!-- Note Date -->
     <EditText
         android:id="@+id/noteDateEditText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:hint="Note Date (YYYY-MM-DD)"
         android:padding="10dp"
-        android:layout_marginTop="16dp"
-        />
+        android:layout_below="@id/noteTitleEditText"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:background="@null"/>
 
-    <Button
-        android:id="@+id/selectImageButton"
+    <!-- Note Content Container -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Images"
-        android:layout_marginTop="16dp"
-        />
+        android:layout_below="@id/noteDateEditText"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/imagesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        />
+        <!-- Note Content -->
+        <EditText
+            android:id="@+id/noteContentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Note Content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:gravity="top"/>
 
+        <!-- RecyclerView for Images -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imagesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/noteContentEditText"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <!-- Save Note Button -->
     <Button
         android:id="@+id/saveNoteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:text="Save Note"
-        android:layout_marginTop="16dp"
-        />
-</LinearLayout>
+        android:backgroundTint="#ABB0C8D9"
+        android:textColor="#000000"
+        android:fontFamily="@font/caveat"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <!-- Select Image Button -->
+    <ImageButton
+        android:id="@+id/selectImageButton"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@drawable/addimage"
+        android:backgroundTint="#D9D9D9"
+        android:contentDescription="Select Images"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/saveNoteButton"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"/>
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_black"
+        android:contentDescription="@string/back_button" />
+</RelativeLayout>
