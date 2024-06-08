@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">bullet journal</string>
+    <string name="sign_up">Register</string>
+    <string name="sign_in">Login</string>
+
+    <string name="online">Online</string>
+    <string name="notes">NOTES</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="allNotes">All Notes</string>
+    <string name="back_button">back button</string>
+    <string name="add_button">add button</string>
+    <string name="logout_button">logout button</string>
+    <string name="delete_button">delete button</string>
+
+
+
 </resources>

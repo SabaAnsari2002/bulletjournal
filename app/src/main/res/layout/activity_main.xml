@@ -1,29 +1,144 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:gravity="center"-->
+<!--    android:padding="16dp">-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Bullet Journal"-->
+<!--        android:textSize="24sp"-->
+<!--        android:layout_marginBottom="32dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/loginButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Login" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/registerButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Register"-->
+<!--        android:layout_marginTop="16dp" />-->
+<!--</LinearLayout>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<!-- Background Image -->
+
+<ImageView
+    android:id="@+id/backgroundImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scaleType="centerCrop"
+    android:src="@drawable/background1"
+    app:srcCompat="@drawable/background1" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Title Image -->
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bullet Journal"
-        android:textSize="24sp"
-        android:layout_marginBottom="32dp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/titleText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lindenhill"
+            android:letterSpacing="0.4"
+            android:text="N"
+            android:textColor="#3B6E99"
+            android:textSize="45sp" />
+
+        <ImageView
+            android:id="@+id/titleImage1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/o1" />
+
+        <TextView
+            android:id="@+id/titleText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lindenhill"
+            android:letterSpacing="0.4"
+            android:text="T"
+            android:textColor="#3B6E99"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/titleText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lindenhill"
+            android:letterSpacing="0.4"
+            android:text="E"
+            android:textColor="#3B6E99"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/titleText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/lindenhill"
+            android:letterSpacing="0.4"
+            android:text="S"
+            android:textColor="#3B6E99"
+            android:textSize="45sp" />
+
+    </LinearLayout>
+
+
+    <!-- Sign In Button -->
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:layout_marginTop="18dp"
+        android:backgroundTint="#A2B2C1"
+        android:fontFamily="@font/caveat"
+        android:text="@string/sign_in"
+        android:textColor="#000"
+        android:textSize="25sp" /> <!-- دسترسی‌پذیری -->
+
+    <!-- Sign Up Button -->
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#CEE3F7"
+        android:fontFamily="@font/caveat"
+        android:text="@string/sign_up"
+        android:textColor="#000"
+        android:textSize="25sp" /> <!-- دسترسی‌پذیری -->
+
 </LinearLayout>
+
+</RelativeLayout>

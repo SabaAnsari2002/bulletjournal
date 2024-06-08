@@ -54,7 +54,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
@@ -68,9 +67,12 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
 
+    // Remove any direct Firebase library versions to avoid conflicts
+    // implementation("com.google.firebase:firebase-storage:21.0.0") // Remove this line
+
     // Compose dependencies
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    implementation ("androidx.compose.ui:ui:1.0.0")
+    implementation("androidx.compose.ui:ui:1.0.0")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
@@ -89,7 +91,6 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
     implementation("com.squareup.picasso:picasso:2.71828")
 
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("com.squareup.picasso:picasso:2.8")
-
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.squareup.picasso:picasso:2.8")
 }
