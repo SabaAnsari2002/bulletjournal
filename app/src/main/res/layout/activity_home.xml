@@ -30,6 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dark Mode"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:layout_marginTop="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
