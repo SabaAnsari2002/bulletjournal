@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#12D3D3D3" /> <!-- رنگ توسی کمرنگ -->
+    <stroke
+        android:width="2dp"
+        android:color="#08083C" /> <!-- رنگ سورمه‌ای -->
+    <corners android:radius="10dp" /> <!-- گوشه‌های گرد -->
+</shape>

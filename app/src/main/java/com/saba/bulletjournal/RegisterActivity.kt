@@ -23,8 +23,15 @@ class RegisterActivity : AppCompatActivity() {
 
         emailEditText = findViewById(R.id.email)
         passwordEditText = findViewById(R.id.password)
+        backButton = findViewById(R.id.back_button)
         registerButton = findViewById(R.id.registerButton)
         mAuth = FirebaseAuth.getInstance()
+
+
+        backButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         registerButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()

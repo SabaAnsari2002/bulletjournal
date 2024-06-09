@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/note_background"> <!-- پس‌زمینه جدید -->
 
     <TextView
         android:id="@+id/noteDateTextView"
@@ -45,14 +46,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp" />
+
             <ImageView
                 android:id="@+id/noteImageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
-
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

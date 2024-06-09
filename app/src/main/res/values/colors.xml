@@ -17,4 +17,7 @@
     <color name="colorPrimaryDarkMode">#BB86FC</color>
     <color name="colorPrimaryVariantDarkMode">#3700B3</color>
     <color name="colorAccentDarkMode">#03DAC5</color>
+
+    <color name="light_mode_text_color">#040E25</color> <!-- Gray color for light mode -->
+    <color name="dark_mode_text_color">#2297CC</color> <!-- Navy color for dark mode -->
 </resources>

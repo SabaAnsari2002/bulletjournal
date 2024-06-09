@@ -123,14 +123,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#A4C7DA"
-            android:fontFamily="@font/jsmath"
+            android:fontFamily="@font/caveat"
             android:gravity="center"
             android:hint="Email"
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:padding="10dp"
             android:textAlignment="center"
-            android:textColorHint="#8A000000"
+            android:textColorHint="#66000000"
             android:textSize="25dp" />
 
         <!-- Password EditText -->
@@ -140,16 +140,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#A4C7DA"
-            android:fontFamily="@font/jsmath"
+            android:fontFamily="@font/caveat"
             android:gravity="center"
             android:hint="Password"
             android:inputType="textPassword"
             android:minWidth="48dp"
             android:minHeight="48dp"
-
             android:padding="10dp"
             android:textAlignment="center"
-            android:textColorHint="#8A000000"
+            android:textColorHint="#66000000"
             android:textSize="25dp" />
 
         <Space

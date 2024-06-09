@@ -22,6 +22,7 @@ class AddNoteActivity : AppCompatActivity() {
     private lateinit var noteTitleEditText: EditText
     private lateinit var noteContentEditText: EditText
     private lateinit var saveNoteButton: Button
+    private lateinit var backButton: ImageButton
     private lateinit var selectImageButton: ImageButton  // Change the type to ImageButton
     private lateinit var imagesRecyclerView: RecyclerView
     private lateinit var firestore: FirebaseFirestore
@@ -41,6 +42,7 @@ class AddNoteActivity : AppCompatActivity() {
         noteTitleEditText = findViewById(R.id.noteTitleEditText)
         noteContentEditText = findViewById(R.id.noteContentEditText)
         saveNoteButton = findViewById(R.id.saveNoteButton)
+        backButton = findViewById(R.id.back_button)
         selectImageButton = findViewById(R.id.selectImageButton)  // Correct the type here
         imagesRecyclerView = findViewById(R.id.imagesRecyclerView)
         noteDateEditText = findViewById(R.id.noteDateEditText)
@@ -49,6 +51,12 @@ class AddNoteActivity : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
         mAuth = FirebaseAuth.getInstance()
+
+
+        backButton.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
 
         imagesAdapter = ImagesAdapter(this, selectedImageUris) { position ->
             selectedImageUris.removeAt(position)
