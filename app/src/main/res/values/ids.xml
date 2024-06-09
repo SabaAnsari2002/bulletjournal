@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="imageView" type="id" />
+    <item name="deleteButton" type="id" />
+    <item name="noteTitleEditText" type="id" />
+    <item name="noteContentEditText" type="id" />
+    <item name="saveNoteButton" type="id" />
+    <item name="selectImageButton" type="id" />
+    <item name="ImageButton" type="id" />
+</resources>
