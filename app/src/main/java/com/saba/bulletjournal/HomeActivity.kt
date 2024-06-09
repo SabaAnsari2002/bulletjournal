@@ -30,15 +30,6 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Check current mode and set theme accordingly
-        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-            setTheme(R.style.AppTheme_Dark)
-        } else {
-            setTheme(R.style.AppTheme_Light)
-        }
-
         setContentView(R.layout.activity_home)
 
         mAuth = FirebaseAuth.getInstance()
@@ -80,6 +71,7 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         }
 
         // Check current mode and set switch accordingly
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         switchDarkMode.isChecked = currentNightMode == Configuration.UI_MODE_NIGHT_YES
 
         // Set listener for switch to change theme

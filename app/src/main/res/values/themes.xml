@@ -29,18 +29,5 @@
         <item name="colorOnSecondary">@color/white</item>
     </style>
 
-    <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
 
-    <!-- Light mode -->
-    <style name="AppTheme.Light">
-        <item name="android:textColor">@color/light_mode_text_color</item>
-    </style>
-
-    <!-- Dark mode -->
-    <style name="AppTheme.Dark">
-        <item name="android:textColor">@color/dark_mode_text_color</item>
-    </style>
 </resources>

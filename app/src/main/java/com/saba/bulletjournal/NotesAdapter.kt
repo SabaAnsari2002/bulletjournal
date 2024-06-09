@@ -29,7 +29,7 @@ class NotesAdapter(
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
         holder.titleTextView.text = note.title
-        holder.contentTextView.text = note.content
+//        holder.contentTextView.text = note.content
         holder.checkBox.isChecked = selectedNotes.contains(position)
         holder.dateTextView.text = note.date
 
