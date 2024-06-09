@@ -77,11 +77,14 @@ class HomeActivity : AppCompatActivity(), NotesAdapter.OnItemClickListener {
         // Set listener for switch to change theme
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
+                // Dark mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
+                // Light mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
