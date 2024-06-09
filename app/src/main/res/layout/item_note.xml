@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/note_background"> <!-- پس‌زمینه جدید -->
+    > <!-- پس‌زمینه جدید -->
+
+<!--    android:background="@drawable/note_background"-->
 
     <TextView
         android:id="@+id/noteDateTextView"
