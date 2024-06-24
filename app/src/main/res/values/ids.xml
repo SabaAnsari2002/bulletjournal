@@ -8,4 +8,6 @@
     <item name="selectImageButton" type="id" />
     <item name="ImageButton" type="id" />
     <item name="textView" type="id" />
+    <item name="imagesRecyclerView" type="id" />
+    <item name="noteDateEditText" type="id" />
 </resources>

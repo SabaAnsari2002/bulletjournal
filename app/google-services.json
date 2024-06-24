@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "347724966530",
-    "project_id": "bulletjournal-9c4bb",
-    "storage_bucket": "bulletjournal-9c4bb.appspot.com"
+    "project_number": "379575963531",
+    "project_id": "notebooks-19fef",
+    "storage_bucket": "notebooks-19fef.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347724966530:android:84e708e5e18b1e81f5e29b",
-        "android_client_info": {
+        "mobilesdk_app_id": "1:379575963531:android:977110c83a04787079298e",
+        "android_client_info": {3
           "package_name": "com.saba.bulletjournal"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAFVPiKM20xTsgjmSu2cdGtTft2lIXAH0I"
+          "current_key": "AIzaSyBTKRQ1QIOtUSFU21TbGYbLJMORDmXPph0"
         }
       ],
       "services": {
