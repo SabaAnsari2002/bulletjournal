@@ -294,13 +294,20 @@ class AddNoteActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error updating note: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+//تاریخ به میلادی درج شود.
+//    private fun getDefaultDate(): String {
+//        val calendar = Calendar.getInstance()
+//        val year = calendar.get(Calendar.YEAR)
+//        val month = calendar.get(Calendar.MONTH) + 1 // ماه‌ها از 0 شروع می‌شوند
+//        val day = calendar.get(Calendar.DAY_OF_MONTH)
+//        return "$year-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}"
+//    }
 
+//تاریخ به شمسی درج شود.
     private fun getDefaultDate(): String {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH) + 1 // ماه‌ها از 0 شروع می‌شوند
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        return "$year-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}"
+        val currentDate = Calendar.getInstance()
+        val converter = PersianDateConverter()
+        return converter.getJalaliDate(currentDate)
     }
 
     companion object {
